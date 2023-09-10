@@ -2,6 +2,7 @@ from tkinter import *
 from constants import *
 import mysql.connector as msc
 from tkinter import messagebox
+from home import home
 
 
 LABEL_X = 0
@@ -80,9 +81,8 @@ def submit_btn_clicked(username_e, password_e, win):
     password_e.delete(0, END)
 
     if check_details(username, password) == 1:
-        print('Details are correct!')
         win.destroy()
-        # logged_in()
+        home(username)
     elif check_details(username, password) == 0:
         messagebox.showwarning('No Match Found',
                                'Recheck and enter your details correctly')

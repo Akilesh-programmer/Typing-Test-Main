@@ -22,7 +22,8 @@ def start():
     win.iconphoto(False, icon)
 
     # Log In Button
-    login_btn = Button(win, text='Log In',
+    login_btn = Button(win,
+                       text='Log In',
                        height=BTN_HEIGHT,
                        width=BTN_WIDTH,
                        font=BTN_FONT,
