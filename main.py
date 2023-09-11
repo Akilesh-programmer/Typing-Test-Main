@@ -52,7 +52,7 @@ def create_typing_test_data_table():
                             TEST_ID INT PRIMARY KEY,
                             USERNAME VARCHAR(255),
                             WPM INT,
-                            ACCURACY FLOAT(4,2),
+                            ACCURACY FLOAT(5,2),
                             FOREIGN KEY(USERNAME) REFERENCES USER(USERNAME)
                         );
         """)
@@ -92,3 +92,4 @@ if __name__ == '__main__':
 # TODO: Tell the user that there are functions to modify the text
 # TODO: Tackle a way to tell the user if they have typed extra words and insist that results won't be correct
 #  or it may even create an error, so be careful about that by creating a try except block in list iteration
+# TODO: Reset the test id to 0 and then do final commit to github

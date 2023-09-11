@@ -2,7 +2,7 @@ from tkinter import *
 from constants import *
 import mysql.connector as msc
 from tkinter import messagebox
-from home import home
+from typing_test import home
 
 
 LABEL_X = 0
