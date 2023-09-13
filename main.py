@@ -93,3 +93,8 @@ if __name__ == '__main__':
 # TODO: Tackle a way to tell the user if they have typed extra words and insist that results won't be correct
 #  or it may even create an error, so be careful about that by creating a try except block in list iteration
 # TODO: Reset the test id to 0 and then do final commit to github
+
+
+# 1. Hide password
+# 2. Live update
+# 3. Plot graph and show the improvement and back from starting day using database, for this include date in the table.
