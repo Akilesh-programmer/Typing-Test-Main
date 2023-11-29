@@ -53,7 +53,8 @@ def login():
     # Password Entry
     password_e = Entry(win,
                        width=ENTRY_WIDTH,
-                       font=ENTRY_FONT)
+                       font=ENTRY_FONT,
+                       show = '*')
     password_e.place(x=ENTRY_X,
                      y=60)
 

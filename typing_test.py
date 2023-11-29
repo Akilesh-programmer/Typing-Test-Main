@@ -4,6 +4,10 @@ import random
 import time
 import mysql.connector as msc
 from tkinter import messagebox
+from graph_plotter import get_data, plot_graph
+import mysql.connector as msc
+import matplotlib.pyplot as plt
+import numpy as np
 
 DISPLAY_TEXT_FONT = ('Helvetica', 14, 'bold')
 LABEL_GRID_ROW = 0
@@ -290,7 +294,7 @@ def home(username):
                     font=BTN_FONT,
                     bg=WIDGET_BG,
                     fg=WIDGET_FG,
-                    command=lambda: show_data_btn_clicked(win))
+                    command=lambda: show_data_btn_clicked(win, username))
     sd_btn.place(x=240,
                  y=BTN_Y)
 
@@ -302,6 +306,7 @@ def typing_test_btn_clicked(win, username):
     typing_test(username)
 
 
-def show_data_btn_clicked(win):
+def show_data_btn_clicked(win, username):
     win.destroy()
-    print('Show Data button clicked')
+    plot_graph(get_data(username))
+    home(username)
