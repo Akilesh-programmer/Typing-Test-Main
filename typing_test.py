@@ -6,8 +6,6 @@ import mysql.connector as msc
 from tkinter import messagebox
 from graph_plotter import get_data, plot_graph
 import mysql.connector as msc
-import matplotlib.pyplot as plt
-import numpy as np
 
 DISPLAY_TEXT_FONT = ('Helvetica', 14, 'bold')
 LABEL_GRID_ROW = 0
@@ -135,7 +133,7 @@ def submit_btn_clicked(win, generated_line, entry_box, username):
         typing_data.append([generated_line, user_typed])
     else:
         messagebox.showwarning('Invalid number of words',
-                               'You have typed extra or no words')
+                               'You have typed extra or no words\nSorry for the inconvenience but the results wont be accurate with incorrect number of words.')
         can_run = False
         home(username)
 

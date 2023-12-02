@@ -1,5 +1,8 @@
 from start import start
 import mysql.connector as msc
+import os
+from tkinter import *
+from tkinter import messagebox
 
 
 def create_database():
@@ -61,23 +64,36 @@ def create_typing_test_data_table():
         connection.close()
     except:
         pass
+    
+def library_installation_commands_and_user_prompt_for_python_mysql_installation():
+    fp = open('program_running_times_count', 'r+')
+    data = fp.read()
+    for i in data:
+        if int(i) == 0:
+            
+            win = Tk()
+            label = Label(win, text = 'Please close this window')
+            label.pack()
+            messagebox.showinfo('Information', 'Make sure that you have python and mysql installed in your device')
+            win.mainloop()
+            
+            os.system('pip install mysql-connector-python')
+            os.system('pip install matplotlib')
+            os.system('pip install numpy')
+            os.system('pip install tk')
+
+            fp.seek(0, 0)
+            fp.write('1')
+    
 
 
 def main():
     create_database()
     create_user_table()
     create_typing_test_data_table()
+    library_installation_commands_and_user_prompt_for_python_mysql_installation()
     start()
 
 
 if __name__ == '__main__':
     main()
-
-# TODO: Find some way to insist user to install pyqt5, mysql-connector-python, mysql, matplotlib you are going to launch as app
-#  so in the readme file say that python have to be installed, then you can itself install the other libraries
-#  required for the program to run via the exe file itself
-# TODO: Think about launching as an app
-# TODO: Tell the user that there are functions to modify the text
-# TODO: Tackle a way to tell the user if they have typed extra words and insist that results won't be correct
-#  or it may even create an error, so be careful about that by creating a try except block in list iteration
-# TODO: Reset the test id to 0 and then do final commit to github
