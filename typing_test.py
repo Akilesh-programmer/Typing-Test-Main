@@ -35,10 +35,11 @@ def calculate_accuracy(typing_data_p):
 
 
 def typing_test(username):
+    global can_run
     words = generate_text_list()
     start_time = time.time()
     times_running = 0
-    while get_text_generated_count() < 5 and (times_running == 0 or can_run):
+    while get_text_generated_count() < 5 and can_run:
         times_running += 1
         show_test_window(generate_line(words), username)
 
@@ -52,9 +53,13 @@ def typing_test(username):
     wpm = calculate_wpm(time_elapsed)
     accuracy = calculate_accuracy(typing_data)
 
-    if len(typing_data) == 5:
+    if len(typing_data) == 5 and can_run:
         insert_data(username, wpm, accuracy)
         show_result(wpm, accuracy, username)
+    elif not can_run:
+        can_run = True
+        typing_data.clear()
+        home(username)
 
 
 def generate_text_list():
@@ -135,7 +140,6 @@ def submit_btn_clicked(win, generated_line, entry_box, username):
         messagebox.showwarning('Invalid number of words',
                                'You have typed extra or no words\nSorry for the inconvenience but the results wont be accurate with incorrect number of words.')
         can_run = False
-        home(username)
 
 
 def show_result(wpm, accuracy, username):
