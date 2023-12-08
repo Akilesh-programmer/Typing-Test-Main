@@ -1,8 +1,14 @@
-from start import start
-import mysql.connector as msc
 import os
-from tkinter import *
-from tkinter import messagebox
+from start import start
+
+try:
+    global msc
+    import mysql.connector as msc
+    
+except ModuleNotFoundError:
+    os.system('pip install mysql-connector-python')
+    
+    import mysql.connector as msc
 
 
 def create_database():
@@ -65,35 +71,24 @@ def create_typing_test_data_table():
     except:
         pass
     
-def library_installation_commands_and_user_prompt_for_python_mysql_installation():
-    fp = open('program_running_times_count', 'r+')
-    data = fp.read()
-    for i in data:
-        if int(i) == 0:
-            
-            win = Tk()
-            label = Label(win, text = 'Please close this window')
-            label.pack()
-            messagebox.showinfo('Information', 'Make sure that you have python and mysql installed in your device')
-            win.mainloop()
-            
-            os.system('pip install mysql-connector-python')
-            os.system('pip install matplotlib')
-            os.system('pip install numpy')
-            os.system('pip install tk')
-
-            fp.seek(0, 0)
-            fp.write('1')
-    
-
 
 def main():
     create_database()
     create_user_table()
     create_typing_test_data_table()
-    library_installation_commands_and_user_prompt_for_python_mysql_installation()
     start()
 
 
 if __name__ == '__main__':
     main()
+
+
+# TODO Add title to the graph plotter window
+# TODO Set common title to the graph plotter window
+# TODO Reduce the number of words to be typed in the typing test
+# TODO Try to show the user how many more words they have to type
+# TODO Make the main program error free, it should download the needed libraries if they are not present
+# TODO Error will even come when you are trying to install the unpresent library but internet is not there.
+# TODO Out app window has to pop up separately as a new icon
+# TODO Try to launch it as an app
+# TODO Try to show the error for python or mysql itself not present

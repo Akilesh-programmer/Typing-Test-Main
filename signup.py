@@ -1,8 +1,18 @@
-from tkinter import *
 from constants import *
-import mysql.connector as msc
-from tkinter import messagebox
 from login import login
+import os
+from tkinter import *
+from tkinter import messagebox
+
+try:
+    global msc
+    import mysql.connector as msc
+
+    
+except ModuleNotFoundError:
+    os.system('pip install mysql-connector-python')
+    import mysql.connector as msc
+
 
 LABEL_X = 0
 ENTRY_X = 115

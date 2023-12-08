@@ -1,6 +1,21 @@
-import mysql.connector as msc
-import matplotlib.pyplot as plt
-import numpy as np
+import os
+
+try: 
+    global msc
+    global plt
+    global np
+    
+    import mysql.connector as msc
+    import matplotlib.pyplot as plt
+    import numpy as np
+    
+except ModuleNotFoundError:
+    os.system('pip install mysql-connector-python')
+    os.system('pip install matplotlib')
+    
+    import mysql.connector as msc
+    import matplotlib.pyplot as plt
+    import numpy as np
 
 
 def get_data(username):

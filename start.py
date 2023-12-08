@@ -1,7 +1,7 @@
-from tkinter import *
-from constants import *
-from login import login
 from signup import signup
+from login import login
+from constants import *
+from tkinter import *
 
 BTN_Y = 60
 BTN_WIDTH = 6

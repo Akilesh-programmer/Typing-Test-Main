@@ -1,11 +1,19 @@
-from tkinter import *
 from constants import *
+from graph_plotter import get_data, plot_graph
+import os
 import random
 import time
-import mysql.connector as msc
 from tkinter import messagebox
-from graph_plotter import get_data, plot_graph
-import mysql.connector as msc
+from tkinter import *
+
+try:
+    global msc
+    import mysql.connector as msc
+    
+except ModuleNotFoundError:
+    os.system('pip install mysql-connector-python')
+    import mysql.connector as msc
+    
 
 DISPLAY_TEXT_FONT = ('Helvetica', 14, 'bold')
 LABEL_GRID_ROW = 0
