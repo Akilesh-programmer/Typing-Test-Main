@@ -78,6 +78,7 @@ def plot_graph(data):
     plt.plot(xpoints, ypoints, marker = 'o', color = 'g')
     plt.xlabel('Test Number')
     plt.ylabel('Accuracy')
+    plt.suptitle('Your Progress')
     plt.grid()
 
     wm = plt.get_current_fig_manager()

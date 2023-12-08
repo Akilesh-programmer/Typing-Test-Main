@@ -38,7 +38,7 @@ def calculate_accuracy(typing_data_p):
             else:
                 wrong_words += 1
 
-    accuracy = (correct_words / 50) * 100
+    accuracy = (correct_words / 30) * 100
     return round(accuracy, 2)
 
 
@@ -47,10 +47,20 @@ def typing_test(username):
     words = generate_text_list()
     start_time = time.time()
     times_running = 0
-    while get_text_generated_count() < 5 and can_run:
+    times_running_reverse_count = 3
+    while get_text_generated_count() < 3 and can_run:
         times_running += 1
-        show_test_window(generate_line(words), username)
-
+        
+        to_pass = None
+        if times_running_reverse_count == 1:
+            to_pass = 'Last sentence!!!'
+            show_test_window(generate_line(words), username, sentence_num = to_pass)
+        else:
+            to_pass = f'{times_running_reverse_count} more sentences to go!!!'
+            show_test_window(generate_line(words), username, sentence_num = to_pass)
+            
+        times_running_reverse_count -= 1
+        
         current_count = get_text_generated_count()
         set_text_generated_count(current_count + 1)
     set_text_generated_count(0)
@@ -61,7 +71,7 @@ def typing_test(username):
     wpm = calculate_wpm(time_elapsed)
     accuracy = calculate_accuracy(typing_data)
 
-    if len(typing_data) == 5 and can_run:
+    if len(typing_data) == 3 and can_run:
         insert_data(username, wpm, accuracy)
         show_result(wpm, accuracy, username)
     elif not can_run:
@@ -80,7 +90,7 @@ def generate_text_list():
 def calculate_wpm(time_elapsed):
     # 100 because there are 10 words in each line and 10 times lines are generated
     # Multiplying by 60 for a minute
-    return int((50 / time_elapsed) * 60)
+    return int((30 / time_elapsed) * 60)
 
 
 def generate_line(words):
@@ -90,7 +100,7 @@ def generate_line(words):
     return line
 
 
-def show_test_window(line, username):
+def show_test_window(line, username, sentence_num):
     win = Tk()
     win.title('Typing Test')
     win.configure(width=1500,
@@ -134,6 +144,15 @@ def show_test_window(line, username):
                     pady=3)
     win.bind('<Return>',
              lambda event: submit_btn_clicked(win, line, entry_box, username))
+    
+    # Current sentence number prompt
+    label123 = Label(win,
+                  text=sentence_num,
+                  bg=BG,
+                  fg='black',
+                  font=DISPLAY_TEXT_FONT)
+    label123.pack(side=BOTTOM,
+                  pady=10)
 
     win.mainloop()
 

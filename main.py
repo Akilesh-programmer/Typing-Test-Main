@@ -82,13 +82,6 @@ def main():
 if __name__ == '__main__':
     main()
 
-
-# TODO Add title to the graph plotter window
-# TODO Set common title to the graph plotter window
-# TODO Reduce the number of words to be typed in the typing test
-# TODO Try to show the user how many more words they have to type
-# TODO Make the main program error free, it should download the needed libraries if they are not present
-# TODO Error will even come when you are trying to install the unpresent library but internet is not there.
-# TODO Out app window has to pop up separately as a new icon
-# TODO Try to launch it as an app
-# TODO Try to show the error for python or mysql itself not present
+# TODO Change all the images in the documentation, because you have made a lot of changes to the code
+# TODO Try to launch as an app
+# TODO Ask how to pop up desktop icon
