@@ -20,7 +20,6 @@ ENTRY_WIDTH = 67
 LABEL_FONT = ('Helvetica', 18)
 ENTRY_FONT = ('Helvetica', 18)
 
-
 def login():
     win = Tk()
     win.title('Login')
@@ -78,6 +77,76 @@ def login():
                         command=lambda: submit_btn_clicked(username_e, password_e, win))
     submit_btn.place(x=475,
                      y=110)
+
+    win.bind('<Return>',
+             lambda event: submit_btn_clicked(username_e, password_e, win))
+
+
+def login_from_signup():
+    win = Tk()
+    win.title('Login')
+    win.configure(width=1000,
+                  height=200)
+    win.configure(bg=BG)
+    win.resizable(False, False)
+
+    # Icon
+    icon = PhotoImage(file=KEYBOARD_ICON_LOC)
+    win.iconphoto(False, icon)
+    
+    # Message Label
+    m_label = Label(win, 
+                    text='Your account has been created, you can now login.',
+                    bg=BG,
+                    fg=WIDGET_FG,
+                    font=LABEL_FONT)
+    m_label.place(x=250,
+                  y=10)
+    # Username label
+    username_l = Label(win,
+                       text='Username',
+                       bg=BG,
+                       fg=WIDGET_FG,
+                       font=LABEL_FONT)
+    username_l.place(x=LABEL_X,
+                     y=50)
+
+    # Password label
+    password_l = Label(win,
+                       text='Password',
+                       bg=BG,
+                       fg=WIDGET_FG,
+                       font=LABEL_FONT)
+    password_l.place(x=LABEL_X,
+                     y=100)
+
+    # Username Entry
+    username_e = Entry(win,
+                       width=ENTRY_WIDTH,
+                       font=ENTRY_FONT)
+    username_e.place(x=ENTRY_X,
+                     y=50)
+    username_e.focus_force()
+
+    # Password Entry
+    password_e = Entry(win,
+                       width=ENTRY_WIDTH,
+                       font=ENTRY_FONT,
+                       show = '*')
+    password_e.place(x=ENTRY_X,
+                     y=100)
+
+    # Submit button
+    submit_btn = Button(win,
+                        text='Submit',
+                        height=1,
+                        width=6,
+                        font=('Helvetica', 15),
+                        bg=WIDGET_BG,
+                        fg=WIDGET_FG,
+                        command=lambda: submit_btn_clicked(username_e, password_e, win))
+    submit_btn.place(x=475,
+                     y=150)
 
     win.bind('<Return>',
              lambda event: submit_btn_clicked(username_e, password_e, win))

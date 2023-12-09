@@ -1,5 +1,5 @@
 from constants import *
-from login import login
+from login import login_from_signup
 import os
 from tkinter import *
 from tkinter import messagebox
@@ -95,7 +95,7 @@ def submit_btn_clicked(username_e, password_e, win):
     if not check_duplication(username):
         insert_into_user(username, password)
         win.destroy()
-        login()
+        login_from_signup()
 
     else:
         messagebox.showwarning('Username already present',

@@ -60,6 +60,7 @@ def plot_graph(data):
 
     plt.subplot(1, 2, 1)
     plt.plot(xpoints, ypoints, marker = 'o', color = 'g')
+    plt.title('Your Speed')
     plt.xlabel('Test Number')
     plt.ylabel('WPM')
     plt.grid()
@@ -74,8 +75,10 @@ def plot_graph(data):
 
     ypoints = np.array(y_array)
 
+    
     plt.subplot(1, 2, 2)
     plt.plot(xpoints, ypoints, marker = 'o', color = 'g')
+    plt.title('Your Accuracy')
     plt.xlabel('Test Number')
     plt.ylabel('Accuracy')
     plt.suptitle('Your Progress')

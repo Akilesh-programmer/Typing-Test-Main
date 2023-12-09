@@ -23,7 +23,25 @@ def create_database():
         connection.commit()
         connection.close()
     except:
-        pass
+        connection = msc.connect(host='localhost',
+                                 user='root',
+                                 password='ADMIN')
+        cursor = connection.cursor()
+        
+        cursor.execute('DROP DATABASE TYPING_TEST;')
+        
+        connection.commit()
+        connection.close()
+        
+        connection2 = msc.connect(host='localhost',
+                                 user='root',
+                                 password='ADMIN')
+        cursor2 = connection2.cursor()
+
+        cursor2.execute("CREATE DATABASE TYPING_TEST;")
+
+        connection2.commit()
+        connection2.close()
 
 
 def create_user_table():
@@ -40,6 +58,10 @@ def create_user_table():
                             PASSWORD VARCHAR(255)
                         );
         """)
+        
+        cursor.execute('''
+                       INSERT INTO USER VALUES('one', 'one');
+                       ''')
 
         connection.commit()
         connection.close()
@@ -65,6 +87,19 @@ def create_typing_test_data_table():
                             FOREIGN KEY(USERNAME) REFERENCES USER(USERNAME)
                         );
         """)
+        
+        prebuilt_values = [(1, 'one', 45, 80.00),
+                           (2, 'one', 47, 82.00),
+                           (3, 'one', 49, 83.00),
+                           (4, 'one', 35, 81.00),
+                           (5, 'one', 48, 98.00),
+                           ]
+        
+        for i in prebuilt_values:
+            
+            cursor.execute('''
+                        INSERT INTO TEST_DATA VALUES(%d, '%s', %d, %f);
+                        '''%(i[0], i[1], i[2], i[3]))
 
         connection.commit()
         connection.close()
@@ -73,15 +108,18 @@ def create_typing_test_data_table():
     
 
 def main():
-    create_database()
-    create_user_table()
-    create_typing_test_data_table()
+    fp = open('number_of_running_in_this_computer', 'r+')
+    data = fp.read()
+    if not int(data):
+        create_database()
+        create_user_table()
+        create_typing_test_data_table()
+        fp.seek(0, 0)
+        fp.write('1')
+    fp.close()
+    
     start()
 
 
 if __name__ == '__main__':
     main()
-
-# TODO Change all the images in the documentation, because you have made a lot of changes to the code
-# TODO Try to launch as an app
-# TODO Ask how to pop up desktop icon
