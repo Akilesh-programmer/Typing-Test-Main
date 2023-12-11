@@ -108,7 +108,7 @@ def create_typing_test_data_table():
     
 
 def main():
-    fp = open('number_of_running_in_this_computer', 'r+')
+    fp = open('number_of_running_in_this_computer.txt', 'r+')
     data = fp.read()
     if not int(data):
         create_database()
