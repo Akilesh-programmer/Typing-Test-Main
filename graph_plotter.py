@@ -83,9 +83,7 @@ def plot_graph(data):
     plt.ylabel('Accuracy')
     plt.suptitle('Your Progress')
     plt.grid()
-
-    wm = plt.get_current_fig_manager()
-    wm.window.state('zoomed')
-
+    
+    plt.tight_layout(pad=0.5)
     
     plt.show()
