@@ -7,15 +7,20 @@ try:
     
     import mysql.connector as msc
     import matplotlib.pyplot as plt
+    import matplotlib
     import numpy as np
+    import PyQt5
     
 except ModuleNotFoundError:
     os.system('pip install mysql-connector-python')
     os.system('pip install matplotlib')
+    os.system('pip install PyQt5')
     
     import mysql.connector as msc
     import matplotlib.pyplot as plt
     import numpy as np
+    import PyQt5
+    import matplotlib
 
 
 def get_data(username):
@@ -42,6 +47,8 @@ def get_data(username):
 
 
 def plot_graph(data):
+    
+    matplotlib.use('TkAgg')
 
     # WPM
     n = len(data)
